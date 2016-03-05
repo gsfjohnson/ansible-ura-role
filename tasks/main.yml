@@ -1,0 +1,17 @@
+---
+
+- name: upload admin files
+  copy: src=ura/admin dest="{{ura_webroot}}/admin/"
+  tags:
+  - admin
+
+- name: upload xpc-ca files
+  copy: src=ura/xpc-ca dest="{{ura_webroot}}/xpc-ca/"
+  tags:
+  - xpc-ca
+
+- name: upload eduroam files
+  copy: src=ura/eduroam dest="{{ura_webroot}}/eduroam/"
+  tags:
+  - eduroam
+
