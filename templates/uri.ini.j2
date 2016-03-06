@@ -1,0 +1,128 @@
+;;
+;; email settings
+;;
+
+email.admin_addr = "{{ura_email.admin_addr|default('root@localhost')}}"
+email.from_name = "{{ura_email.from_name|default('URA')}}"
+email.from_addr = "{{ura_email.from_addr|default('root@localhost')}}"
+
+
+;;
+;; certificate authority settings
+;;
+
+ca.cert_filename = "{{ura_ca.cert_filename|default('/etc/raddb/certs/ca.pem')}}"
+ca.key_filename = "{{ura_ca.key_filename|default('/etc/raddb/certs/ca.key')}}"
+ca.key_password = "{{ura_ca.key_password|default('abracadabra')}}"
+ca.openssl_cnf = "{{ura_ca.openssl_cnf|default('/etc/raddb/certs/openssl.cnf')}}"
+ca.x509_extensions = "{{ura_ca.x509_extensions|default('v3_client')}}"
+
+
+;;
+;; log settings
+;;
+
+log.filename = "{{ura_log.filename|default('/var/log/ura.log')}}"
+
+
+;;
+;; authentication settings
+;;
+
+;; auth.source = { self, shib, REMOTE_USER }
+auth.source = "{{ura_auth.source|default('self')}}"
+
+;; path to application
+auth.path = "{{ura_auth.path|default('/admin')}}"
+
+;; post-pend suffix to usernames
+auth.suffix = "{{ura_auth.suffix|default('@example.com')}}"
+
+
+;;
+;; debug settings
+;;
+
+;; debug.destination = { console, log }
+debug.destination = "{{ura_debug.destination|default('log')}}"
+
+;; debug.level = D_FATAL, D_ERROR, D_WARN, D_NOTICE, D_INFO
+debug.level = "{{ura_debug.level|default('D_NOTICE')}}"
+
+;; debug.functions = <pipe seperated list of monitored functions>
+;; Note: all subfunctions will be have FULL debugging enabled
+debug.functions = "{{ura_debug.functions|default('')}}"
+
+
+;;
+;; default settings
+;;
+
+retention.token_days = {{ura_retention.token_days|default(365)}}
+retention.accounting_days = {{ura_retention.accounting_days|default(7)}}
+retention.hc_accounting_days = {{ura_retention.hc_accounting_days|default(180)}}
+retention.shibcookie_days = {{ura_retention.shibcookie_days|default(1)}}
+
+default.token_expiration = "{{ura_retention.token_expiration|default('+1 year')}}"
+default.accounting_expiration_days = {{ura_default.accounting_expiration_days|default(7)}}
+default.shibcookie_expiration_days = {{ura_default.shibcookie_expiration_days|default(1)}}
+
+default.usercert_days = {{ura_default.usercert_days|default(365)}}
+default.userkey_bits = {{ura_default.userkey_bits|default(1024)}}
+
+
+;;
+;; ldap config
+;;
+
+ldap.server = "{{ura_ldap.server|default('localhost')}}"
+;; ldaps is 636; default ldap port is 389
+ldap.port = {{ura_ldap.port|default(389)}}
+ldap.bind_dn = "{{ura_ldap.bind_dn}}"
+ldap.bind_pw = "{{ura_ldap.bind_pw}}"
+ldap.base_dn = "{{ura_ldap.base_dn}}"
+ldap.username_attr = "{{ura_ldap.username_attr|default('cn')}}"
+;; default: ldap.proxyauth = 0
+;; ldap.proxyauth = 1
+
+;;
+;; database config
+;;
+
+{% for key in ['type','host','user','pass','name'] %}
+db.{{key}} = "{{ura_db[key]}}"
+{{% endfor %}
+
+
+;;
+;; radius config
+;;
+
+{% for key in ['config_path','dict_fn','hunt_fn','stat_secret','stat_server'] %}
+radius.{{key}} = "{{ura_radius[key]}}"
+{{% endfor %}
+
+
+;;
+;; expiration notice
+;;
+
+{% for key in ['eduroamExpireEmailSubject','eduroamExpireEmailFrom','eduroamExpireEmailReplyTo','eduroamExpireEmailBcc','eduroamExpireEmailTemplate'] %}
+notice.{{key}} = "{{ura_notice[key]}}"
+{{% endfor %}
+
+;;
+;;  xpc-ca
+;;
+
+xpcca.ldap_filter = "{{ura_xpcca.ldap_filter|default('')}}"
+
+
+;;
+;; (UAlaska|eduroam)Session.pl
+;;
+
+{% for key in ['qos_silver','qos_gold','qos_platinum','qos_bronze','blacklist_qos','blacklist_if','blacklist_acl','guest_bw','guest_burst_bw','guest_qos','guest_acl','guest_fullaccess_qos','db_type','db_user','db_pass','db_dsn','un_suffix','wifi_session_length_in_days','wired_session_length_in_days','port_information_expiration','guest_regex'] %}
+session.{{key}} = "{{ura_session[key]}}"
+{{% endfor %}
+
