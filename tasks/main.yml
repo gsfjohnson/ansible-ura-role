@@ -1,7 +1,9 @@
 ---
 
-- name: uri.ini template
-  template: src=uri.ini.j2 dest=/var/www/uri.ini mode=0666 owner=root group=root
+- name: ura.ini template
+  template: src=ura.ini.j2 dest=/var/www/ura.ini mode=0666 owner=root group=root
+  tags:
+  - ura.ini
 
 - name: upload admin files
   copy: src=ura/admin dest="{{ura_webroot}}"

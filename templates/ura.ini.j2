@@ -2,27 +2,27 @@
 ;; email settings
 ;;
 
-email.admin_addr = "{{ura_email.admin_addr|default('root@localhost')}}"
-email.from_name = "{{ura_email.from_name|default('URA')}}"
-email.from_addr = "{{ura_email.from_addr|default('root@localhost')}}"
+email.admin_addr = "{{ura_email_admin_addr|default('root@localhost')}}"
+email.from_name = "{{ura_email_from_name|default('URA')}}"
+email.from_addr = "{{ura_email_from_addr|default('root@localhost')}}"
 
 
 ;;
 ;; certificate authority settings
 ;;
 
-ca.cert_filename = "{{ura_ca.cert_filename|default('/etc/raddb/certs/ca.pem')}}"
-ca.key_filename = "{{ura_ca.key_filename|default('/etc/raddb/certs/ca.key')}}"
-ca.key_password = "{{ura_ca.key_password|default('abracadabra')}}"
-ca.openssl_cnf = "{{ura_ca.openssl_cnf|default('/etc/raddb/certs/openssl.cnf')}}"
-ca.x509_extensions = "{{ura_ca.x509_extensions|default('v3_client')}}"
+ca.cert_filename = "{{ura_ca_cert_filename|default('/etc/raddb/certs/ca.pem')}}"
+ca.key_filename = "{{ura_ca_key_filename|default('/etc/raddb/certs/ca.key')}}"
+ca.key_password = "{{ura_ca_key_password|default('abracadabra')}}"
+ca.openssl_cnf = "{{ura_ca_openssl_cnf|default('/etc/raddb/certs/openssl.cnf')}}"
+ca.x509_extensions = "{{ura_ca_x509_extensions|default('v3_client')}}"
 
 
 ;;
 ;; log settings
 ;;
 
-log.filename = "{{ura_log.filename|default('/var/log/ura.log')}}"
+log.filename = "{{ura_log_filename|default('/var/log/ura.log')}}"
 
 
 ;;
@@ -30,13 +30,13 @@ log.filename = "{{ura_log.filename|default('/var/log/ura.log')}}"
 ;;
 
 ;; auth.source = { self, shib, REMOTE_USER }
-auth.source = "{{ura_auth.source|default('self')}}"
+auth.source = "{{ura_auth_source|default('self')}}"
 
 ;; path to application
-auth.path = "{{ura_auth.path|default('/admin')}}"
+auth.path = "{{ura_auth_path|default('/admin')}}"
 
 ;; post-pend suffix to usernames
-auth.suffix = "{{ura_auth.suffix|default('@example.com')}}"
+auth.suffix = "{{ura_auth_suffix|default('@example.com')}}"
 
 
 ;;
@@ -44,44 +44,44 @@ auth.suffix = "{{ura_auth.suffix|default('@example.com')}}"
 ;;
 
 ;; debug.destination = { console, log }
-debug.destination = "{{ura_debug.destination|default('log')}}"
+debug.destination = "{{ura_debug_destination|default('log')}}"
 
 ;; debug.level = D_FATAL, D_ERROR, D_WARN, D_NOTICE, D_INFO
-debug.level = "{{ura_debug.level|default('D_NOTICE')}}"
+debug.level = "{{ura_debug_level|default('D_NOTICE')}}"
 
 ;; debug.functions = <pipe seperated list of monitored functions>
 ;; Note: all subfunctions will be have FULL debugging enabled
-debug.functions = "{{ura_debug.functions|default('')}}"
+debug.functions = "{{ura_debug_functions|default('')}}"
 
 
 ;;
 ;; default settings
 ;;
 
-retention.token_days = {{ura_retention.token_days|default(365)}}
-retention.accounting_days = {{ura_retention.accounting_days|default(7)}}
-retention.hc_accounting_days = {{ura_retention.hc_accounting_days|default(180)}}
-retention.shibcookie_days = {{ura_retention.shibcookie_days|default(1)}}
+retention.token_days = {{ura_retention_token_days|default(365)}}
+retention.accounting_days = {{ura_retention_accounting_days|default(7)}}
+retention.hc_accounting_days = {{ura_retention_hc_accounting_days|default(180)}}
+retention.shibcookie_days = {{ura_retention_shibcookie_days|default(1)}}
 
-default.token_expiration = "{{ura_retention.token_expiration|default('+1 year')}}"
-default.accounting_expiration_days = {{ura_default.accounting_expiration_days|default(7)}}
-default.shibcookie_expiration_days = {{ura_default.shibcookie_expiration_days|default(1)}}
+default.token_expiration = "{{ura_retention_token_expiration|default('+1 year')}}"
+default.accounting_expiration_days = {{ura_default_accounting_expiration_days|default(7)}}
+default.shibcookie_expiration_days = {{ura_default_shibcookie_expiration_days|default(1)}}
 
-default.usercert_days = {{ura_default.usercert_days|default(365)}}
-default.userkey_bits = {{ura_default.userkey_bits|default(1024)}}
+default.usercert_days = {{ura_default_usercert_days|default(365)}}
+default.userkey_bits = {{ura_default_userkey_bits|default(1024)}}
 
 
 ;;
 ;; ldap config
 ;;
 
-ldap.server = "{{ura_ldap.server|default('localhost')}}"
+ldap.server = "{{ura_ldap_server|default('localhost')}}"
 ;; ldaps is 636; default ldap port is 389
-ldap.port = {{ura_ldap.port|default(389)}}
-ldap.bind_dn = "{{ura_ldap.bind_dn}}"
-ldap.bind_pw = "{{ura_ldap.bind_pw}}"
-ldap.base_dn = "{{ura_ldap.base_dn}}"
-ldap.username_attr = "{{ura_ldap.username_attr|default('cn')}}"
+ldap.port = {{ura_ldap_port|default(389)}}
+ldap.bind_dn = "{{ura_ldap_bind_dn}}"
+ldap.bind_pw = "{{ura_ldap_bind_pw}}"
+ldap.base_dn = "{{ura_ldap_base_dn}}"
+ldap.username_attr = "{{ura_ldap_username_attr|default('cn')}}"
 ;; default: ldap.proxyauth = 0
 ;; ldap.proxyauth = 1
 
@@ -89,40 +89,69 @@ ldap.username_attr = "{{ura_ldap.username_attr|default('cn')}}"
 ;; database config
 ;;
 
-{% for key in ['type','host','user','pass','name'] %}
-db.{{key}} = "{{ura_db[key]}}"
-{{% endfor %}
+db.type = "{{ura_db_type|default('mysql')}}"
+db.host = "{{ura_db_host|default('localhost')}}"
+db.user = "{{ura_db_user}}"
+db.pass = "{{ura_db_pass}}"
+db.name = "{{ura_db_name|default('radius')}}"
 
 
 ;;
 ;; radius config
 ;;
 
-{% for key in ['config_path','dict_fn','hunt_fn','stat_secret','stat_server'] %}
-radius.{{key}} = "{{ura_radius[key]}}"
-{{% endfor %}
+;radius.config_path = "{{ura_radius_config_path|default('/etc/raddb')}}"
+radius.dict_fn = "{{ura_radius_dict_fn|default('/usr/share/freeradius/dictionary')}}"
+radius.hunt_fn = "{{ura_radius_hunt_fn|default('/etc/raddb/huntgroups')}}"
+radius.stat_secret = "{{ura_radius_stat_secret}}"
+radius.stat_server = "{{ura_radius_stat_server}}"
 
 
 ;;
 ;; expiration notice
 ;;
 
-{% for key in ['eduroamExpireEmailSubject','eduroamExpireEmailFrom','eduroamExpireEmailReplyTo','eduroamExpireEmailBcc','eduroamExpireEmailTemplate'] %}
-notice.{{key}} = "{{ura_notice[key]}}"
-{{% endfor %}
+notice.eduroamExpireEmailSubject = "{{ura_notice_eduroamExpireEmailSubject}}"
+notice.eduroamExpireEmailFrom = "{{ura_notice_eduroamExpireEmailFrom}}"
+notice.eduroamExpireEmailReplyTo = "{{ura_notice_eduroamExpireEmailReplyTo}}"
+notice.eduroamExpireEmailBcc = "{{ura_notice_eduroamExpireEmailBcc}}"
+
 
 ;;
 ;;  xpc-ca
 ;;
 
-xpcca.ldap_filter = "{{ura_xpcca.ldap_filter|default('')}}"
+xpcca.ldap_filter = "{{ura_xpcca_ldap_filter|default('')}}"
 
 
 ;;
 ;; (UAlaska|eduroam)Session.pl
 ;;
 
-{% for key in ['qos_silver','qos_gold','qos_platinum','qos_bronze','blacklist_qos','blacklist_if','blacklist_acl','guest_bw','guest_burst_bw','guest_qos','guest_acl','guest_fullaccess_qos','db_type','db_user','db_pass','db_dsn','un_suffix','wifi_session_length_in_days','wired_session_length_in_days','port_information_expiration','guest_regex'] %}
-session.{{key}} = "{{ura_session[key]}}"
-{{% endfor %}
+session.qos_silver = {{ura_session_qos_silver}}
+session.qos_gold = {{ura_session_qos_silver}}
+session.qos_platinum = {{ura_session_qos_silver}}
+session.qos_bronze = {{ura_session_qos_silver}}
 
+;session.blacklist_qos = "{{ura_session_blacklist_qos}}"
+;session.blacklist_if = "{{ura_session_blacklist_if}}"
+session.blacklist_acl = "{{ura_session_blacklist_acl}}"
+;session.guest_bw = "{{ura_session_guest_bw}}"
+;session.guest_burst_bw = "{{ura_session_guest_burst_bw}}"
+session.guest_qos = "{{ura_session_guest_qos}}"
+session.guest_acl = "{{ura_session_guest_acl}}"
+session.fullaccess_qos = "{{ura_session_fullaccess_qos}}"
+;session.fullaccess_acl = "{{ura_session_fullaccess_acl}}"
+
+session.db_type = "{{ura_session_db_type}}"
+session.db_user = "{{ura_session_db_user}}"
+session.db_pass = "{{ura_session_db_pass}}"
+session.db_dsn = "{{ura_session_db_dsn}}"
+
+session.un_suffix = '{{ura_session_un_suffix}}'
+
+session.wifi_session_length_in_days = {{ura_session_wifi_session_length_in_days}}
+; session.wired_session_length_in_days = {{ura_session_wired_session_length_in_days}}
+session.port_information_expiration = {{ura_session_port_information_expiration}}
+
+session.guest_regex = "{{ura_session_guest_regex}}"

@@ -2,3 +2,80 @@
 
 ura_webroot: /var/www/html
 
+ura_email_admin_addr: root@localhost
+ura_email_from_name: "URA"
+ura_email_from_addr: "root@localhost"
+
+ura_ca_cert_filename: /etc/raddb/certs/ca.pem
+ura_ca_key_filename: /etc/raddb/certs/ca.key
+ura_ca_key_password: supersecret
+ura_ca_openssl_conf: /etc/raddb/certs/openssl.cnf
+ura_ca_x509_extensions: v3_client
+
+ura_log_filename: /var/log/ura.log
+
+ura_auth_source: self
+ura_auth_path: /admin
+ura_auth_suffix: "@example.com"
+
+ura_debug_destination: log
+ura_debug_level: D_NOTICE
+ura_debug_functions: ""
+
+ura_retention_token_days: 365
+ura_retention_accounting_days: 7
+ura_retention_hc_accounting_days: 180
+ura_retention_shibcookie_days: 1
+
+ura_default_token_expiration: "+1 year"
+ura_default_accounting_expiration_days: 7
+ura_default_shibcookie_expiration_days: 1
+ura_default_usercert_days: 365
+ura_default_userkey_bits: 1024
+
+ura_ldap_server: "adroot.example.com"
+ura_ldap_port: 389
+ura_ldap_bind_dn: "cn=admin,dc=example,dc=com"
+ura_ldap_bind_pw: ""
+ura_ldap_base_dn: "dc=example,dc=com"
+ura_ldap_username_attr: "cn"
+
+ura_db_type: mysql
+ura_db_host: localhost
+ura_db_user: ""
+ura_db_pass: ""
+ura_db_name: radius
+
+ura_radius_dict_fn: /usr/share/freeradius/dictionary
+ura_radius_hunt_fn: /etc/raddb/huntgroups
+ura_radius_stat_secret: ""
+ura_radius_stat_server: "localhost:18120"
+
+ura_notice_eduroamExpireEmailSubject: "Certificate Expiring"
+ura_notice_eduroamExpireEmailFrom: "helpdesk@example.com"
+ura_notice_eduroamExpireEmailReplyTo: "helpdesk@example.com"
+ura_notice_eduroamExpireEmailBcc: ""
+
+ura_session_qos_silver: 0
+ura_session_qos_gold: 1
+ura_session_qos_platinum: 2
+ura_session_qos_bronze: 3
+ura_session_blacklist_qos: "Bronze"
+ura_session_blacklist_if: "vlan 98"
+ura_session_blacklist_acl: "BlacklistACL"
+ura_session_guest_bw: undef
+ura_session_guest_burst_bw: undef
+ura_session_guest_qos: "Bronze"
+ura_session_guest_acl: "GuestACL"
+ura_session_fullaccess_qos: "Silver"
+ura_session_fullaccess_acl: "Silver"
+ura_session_db_type: "mysql"
+ura_session_db_user: ""
+ura_session_db_pass: ""
+ura_session_db_dsn: "dbi:mysql:radius:localhost:3306"
+ura_session_un_suffix: '@example.com'
+ura_session_wifi_session_length_in_days: 21
+ura_session_wired_session_length_in_days: 120
+ura_session_port_information_expiration: 120
+ura_session_guest_regex: "guest(?:-test)*"
+
